@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch, useSelector } from 'react-redux'
+import {add, sub} from './store/counterSlice'
+
 
 function App() {
+
+  const dispatch = useDispatch()
+  const counter = useSelector((state) => state.counter)
+
+  const handleAdd = () => {
+    dispatch(add(1))
+  }
+
+  const handleSub = () => {
+    dispatch(sub(1))
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <div className="container">
+        <div className="plus" onClick={handleAdd}>+</div>
+        <div className="screen">{counter}</div>
+        <div className="minus" onClick={handleSub}>-</div>
+      </div>
+
     </div>
   );
 }
